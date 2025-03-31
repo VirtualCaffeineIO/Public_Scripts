@@ -1,5 +1,26 @@
 <#
-Detect Script for Apply-DefaultUserUISettings script
+.SYNOPSIS
+    Detect Script for Apply-DefaultUserUISettings script for default profile.
+
+.DESCRIPTION
+    This script verifies registry settings for the Default User profile (NTUSER.DAT via HKLM\TempUser).
+    
+    Settings applied:
+    - Aligns Start Menu to the left (TaskbarAl = 0)
+    - Shows file extensions (HideFileExt = 0)
+    - Hides the Task View button (ShowTaskViewButton = 0)
+    - Sets Search box to icon-only (SearchboxTaskbarMode = 1)
+    - Enables classic right-click context menu (adds CLSID key)
+
+    Default user changes are applied by loading NTUSER.DAT from C:\Users\Default, modifying the hive, and unloading it.
+
+    Output is logged to:
+    C:\ProgramData\Microsoft\IntuneManagementExtension\Logs\Set-Win11Defaults.log
+
+.NOTES
+    Author: Virtual Caffeine IO
+    Created: 3/31/2025
+    Intended for use with Intune Win32 apps or provisioning scripts.
 #>
 
 $hiveName = "HKLM\DefaultUserTemp"
