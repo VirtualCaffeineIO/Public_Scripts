@@ -1,3 +1,7 @@
+<#
+Detect Script for Apply-DefaultUserUISettings script
+#>
+
 $hiveName = "HKLM\DefaultUserTemp"
 $ntuserDat = "C:\Users\Default\NTUSER.DAT"
 
