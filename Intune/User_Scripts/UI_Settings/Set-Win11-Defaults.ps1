@@ -1,5 +1,28 @@
 <#
-This script will edith both the HKCU and Defautl user's start menu UI
+.SYNOPSIS
+    Applies Windows 11 UI customizations for both the current user and the default profile.
+
+.DESCRIPTION
+    This script modifies registry settings for the current logged-in user (HKCU) and the Default User profile (NTUSER.DAT via HKLM\TempUser).
+    
+    Settings applied:
+    - Aligns Start Menu to the left (TaskbarAl = 0)
+    - Shows file extensions (HideFileExt = 0)
+    - Hides the Task View button (ShowTaskViewButton = 0)
+    - Sets Search box to icon-only (SearchboxTaskbarMode = 1)
+    - Enables classic right-click context menu (adds CLSID key)
+
+    Current user changes are applied directly.
+    Default user changes are applied by loading NTUSER.DAT from C:\Users\Default, modifying the hive, and unloading it.
+
+    Output is logged to:
+    C:\ProgramData\Microsoft\IntuneManagementExtension\Logs\Set-Win11Defaults.log
+
+.NOTES
+    Author: Virtual Caffeine IO
+    Created: 3-31-2025
+    WWW: virtualcaffeine.io
+    Intended for use with Intune Win32 apps or provisioning scripts.
 #>
 
 # Define log path
