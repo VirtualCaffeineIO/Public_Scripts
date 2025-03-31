@@ -20,6 +20,7 @@
 .NOTES
     Author: Virtual Caffeine IO
     Created: 3/31/2025
+    www: virtualcaffeine.io
     Intended for use with Intune Win32 apps or provisioning scripts.
 #>
 
