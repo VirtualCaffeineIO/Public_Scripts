@@ -1,9 +1,7 @@
-Important information you need while creating the app in Intune:
+These are to install office from an existing xml file.
+The base is meant to be pushed to "All Devices"
+The Visio and Publisher can be pushed to User Groups as required or Available,
 
-Install command: setup.exe /configure project.xml
-Uninstall command: setup.exe /configure remove.xml
+The Language packs are meant to be published as "Available" for All Users" or a group that matches the requested language.
 
-Detection:
-Registry: HKLM\SOFTWARE\Microsoft\Office\16.0\Project\InstallRoot
-Value name: Path
-Detection method: Value exists
+You can make a dynamic group key's off the users language.
