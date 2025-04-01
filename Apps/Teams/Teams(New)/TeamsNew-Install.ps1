@@ -1,19 +1,3 @@
-<# 
-.SYNOPSIS 
-Install New Microsoft Teams App on target devices 
-.DESCRIPTION 
-Below script will install New MS Teams App Offline.
- 
-.NOTES     
-        Name       : New MS Teams App Installation Offline
-        Author     : Jatin Makhija  
-        Version    : 1.0.0  
-        DateCreated: 12-Jan-2024
-        Blog       : https://cloudinfra.net
-         
-.LINK 
-https://cloudinfra.net 
-#>
 # Define paths and filenames
 $msixFile = ".\MSTeams-x64.msix"
 $destinationPath = "C:\windows\temp"
