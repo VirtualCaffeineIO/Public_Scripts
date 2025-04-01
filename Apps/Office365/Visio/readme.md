@@ -7,3 +7,5 @@ Detection:
 Registry: HKLM\SOFTWARE\Microsoft\Office\16.0\Visio\InstallRoot
 Value name: Path
 Detection method: Value exists
+
+Or Use the detection Script which looks in teh Uninstall registry locations for Visio
