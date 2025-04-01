@@ -1,3 +1,11 @@
+<# 
+.SYNOPSIS 
+Change Desktop Wallpaper for a User on Win11
+ 
+.DESCRIPTION 
+Below Script will download a wallpaper from a Publicly accessible
+location and Update on the device for a particular user
+#>
 # Specify the URL of your custom wallpaper
 $wallpaperUrl = 'https://csjdevstorage.blob.core.windows.net/bloatware/DinosaurPark.jpg'
 
