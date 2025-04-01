@@ -1,19 +1,3 @@
-<# 
-.SYNOPSIS 
-Detect New Microsoft Teams App on target devices 
-.DESCRIPTION 
-Below script will detect if New MS Teams App is installed.
- 
-.NOTES     
-        Name       : New MS Teams Detection Script
-        Author     : Jatin Makhija  
-        Version    : 1.0.1  
-        DateUpdated: 06-Dec-2024
-        Blog       : https://cloudinfra.net
-         
-.LINK 
-https://cloudinfra.net 
-#>
 # Define the path where New Microsoft Teams is installed
 $teamsPath = "C:\Program Files\WindowsApps"
 
