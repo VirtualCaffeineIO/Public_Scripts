@@ -7,3 +7,5 @@ Detection:
 Registry: HKLM\SOFTWARE\Microsoft\Office\16.0\Project\InstallRoot
 Value name: Path
 Detection method: Value exists
+
+Or Use the detection script
