@@ -2,6 +2,8 @@
 
 These scripts are designed for use with Microsoft Intune Remediations to detect and remediate unmanaged or legacy installations of Greenshot.
 
+The goal is to run this ONCE then use a standard detect and remediate script to update the app.
+
 ## Scripts Included
 
 ### `Detect-Greenshot.ps1`
