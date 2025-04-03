@@ -1,10 +1,23 @@
-# Intune Scripts Collection
+# Public Scripts Repository
 
-A general-purpose repository for Intune automation, remediations, upgrades, and more.
+This is a general-purpose repository for scripts created by **Virtual Caffeine IO**, primarily focused on Intune, app deployments, automation, and PowerShell tooling.
 
-## Available Projects
+## Contents
 
-### ✅ [Win11-Upgrade](./Win11-Upgrade/)
-Perform a TPM-validated, scheduled in-place upgrade to Windows 11 24H2 via Intune Win32 App.
+- `Win11-Assistant/` – Automates Windows 11 upgrades using the Installation Assistant.
+- `Apps/` – App deployment scripts (MSI, EXE, Win32).
+- `Remediation/` – Scripts for Intune Remediations and proactive fixes.
+- `Winget/` – Winget-based detection, uninstall, and standardization scripts.
 
-More folders coming soon...
+## Usage
+
+Each folder includes its own `README.md` with details. Most scripts are designed to be used in Intune as Win32 apps or remediation tasks.
+
+## License
+
+MIT License. See [LICENSE](LICENSE) for details.
+
+## Author
+
+**Virtual Caffeine IO**  
+[https://virtualcaffeine.io](https://virtualcaffeine.io)
