@@ -1,3 +1,4 @@
+
 # Win11 Upgrade Assistant for Intune (Public Version)
 
 Author: Virtual Caffeine IO  
@@ -74,17 +75,22 @@ IntuneWinAppUtil.exe -c . -s Launch-Win11-AzCopy.ps1 -o .
 ```
 
 ### Step 3: Create App in Intune
-1. Go to **Endpoint Manager > Apps > Windows > Add**
-2. App type: **Windows app (Win32)**
-3. Upload `.intunewin` file
 
-#### Install Command:
+### ✅ Install and Uninstall Commands
+
+#### Install Command
 ```powershell
 powershell.exe -ExecutionPolicy Bypass -File Launch-Win11-AzCopy.ps1
 ```
 
-#### Uninstall Command:
-_(optional: no uninstaller required)_
+#### Uninstall Command
+No uninstaller is required for this upgrade package.  
+You may leave this blank or use a simple script that returns an exit code of `0` to satisfy Intune’s requirements.
+
+Example placeholder uninstall script:
+```powershell
+exit 0
+```
 
 #### Detection Rule:
 - Type: **Script**
