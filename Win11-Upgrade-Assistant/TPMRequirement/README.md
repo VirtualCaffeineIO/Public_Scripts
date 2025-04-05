@@ -18,18 +18,13 @@ When setting up your Win32 App in Intune:
 4. Upload: `Requirement-TPM2.ps1`
 5. Configure the following options:
 
-| Setting                                   | Value             |
-|-------------------------------------------|-------------------|
-| Run this script using logged on credentials | `No`              |
-| Enforce script signature check             | `No`              |
-| Run script in 64-bit PowerShell            | `Yes`             |
-| Script output data type                    | `Integer`         |
-| Operator                                   | `Equals`          |
-| Value                                      | `0`               |
+| Setting                                      | Value             |
+|----------------------------------------------|-------------------|
+| **Run this script using logged on credentials** | `No`           |
+| **Enforce script signature check**             | `No`           |
+| **Run script as 32-bit on 64-bit clients**     | `No`           |
+| **Script output data type**                    | `Integer`      |
+| **Operator**                                   | `Equals`       |
+| **Value**                                      | `0`            |
 
 This configuration ensures the upgrade will only run on devices that pass the TPM check.
-
----
-
-Created by Virtual Caffeine IO  
-https://virtualcaffeine.io
