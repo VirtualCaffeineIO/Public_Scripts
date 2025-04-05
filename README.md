@@ -4,7 +4,7 @@ This is a general-purpose repository for scripts created by **Virtual Caffeine I
 
 ## Contents
 
-- `Win11-Assistant/` – Automates Windows 11 upgrades using the Installation Assistant.
+- `Win11-Upgrade-Assistant/` – User driven Windows 11 upgrades using the Installation Assistant.
 - `Apps/` – App deployment scripts (MSI, EXE, Win32).
 - `Remediation/` – Scripts for Intune Remediations and proactive fixes.
 - `Winget/` – Winget-based detection, uninstall, and standardization scripts.
