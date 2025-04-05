@@ -1,23 +1,33 @@
-# Public Scripts Repository
+# Detect-TPMVersion.ps1
 
-This is a general-purpose repository for scripts created by **Virtual Caffeine IO**, primarily focused on Intune, app deployments, automation, and PowerShell tooling.
+This script checks for the presence of **TPM 2.0 or 2.1** on a Windows device.
 
-## Contents
+## ✅ What It Does
 
-- `Win11-Upgrade-Assistant/` – User driven Windows 11 upgrades using the Installation Assistant.
-- `Apps/` – App deployment scripts (MSI, EXE, Win32).
-- `Remediation/` – Scripts for Intune Remediations and proactive fixes.
-- `Winget/` – Winget-based detection, uninstall, and standardization scripts.
+- Queries the TPM version from WMI using `Win32_Tpm`
+- Splits multi-version strings like `2.0, 0, 1.16`
+- Returns:
+  - `0` if TPM 2.0 or 2.1 is found
+  - `1` otherwise
 
-## Usage
+## 🧠 Use Cases
 
-Each folder includes its own `README.md` with details. Most scripts are designed to be used in Intune as Win32 apps or remediation tasks.
+- As a **requirement rule** for Win32 apps in Intune
+- As a **detection method** for upgrade policies
+- For **compliance** or **reporting**
 
-## License
+## 📦 Example: Using in Intune Requirement
 
-MIT License. See [LICENSE](LICENSE) for details.
+| Setting                                   | Value     |
+|-------------------------------------------|-----------|
+| Run as 32-bit on 64-bit clients           | No        |
+| Run using logged-on credentials           | No        |
+| Enforce script signature check            | No        |
+| Script output type                        | Integer   |
+| Operator                                  | Equals    |
+| Value                                     | 0         |
 
-## Author
+---
 
-**Virtual Caffeine IO**  
-[https://virtualcaffeine.io](https://virtualcaffeine.io)
+Created by Virtual Caffeine IO  
+https://virtualcaffeine.io
