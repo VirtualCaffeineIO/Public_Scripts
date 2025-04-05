@@ -2,23 +2,34 @@
 
 This script is used as a **requirement rule** in Intune to ensure that only devices with **TPM 2.0 or 2.1** are allowed to install the Windows 11 upgrade.
 
-## Usage
-
-1. In your Intune Win32 app, go to **Requirements**
-2. Add a new **Script** requirement
-3. Upload `Requirement-TPM2.ps1`
-4. Configure it:
-   - Run script as **System**
-   - 32-bit: **No**
-   - Script output type: **Integer**
-   - Operator: **Equals**
-   - Value: `0`
-
 ## What It Does
 
-- Returns `0` if TPM version is `2.0` or `2.1`
+- Uses WMI to check for TPM version
+- Returns `0` if TPM 2.0 or 2.1 is detected
 - Returns `1` otherwise
-- Uses CIM to query the TPM on the device
+
+## How to Use This in Intune
+
+When setting up your Win32 App in Intune:
+
+1. Go to the **Requirements** tab
+2. Click **Add**
+3. Set **Requirement type**: `Script`
+4. Upload: `Requirement-TPM2.ps1`
+5. Configure the following options:
+
+| Setting                                   | Value             |
+|-------------------------------------------|-------------------|
+| Run this script using logged on credentials | `No`              |
+| Enforce script signature check             | `No`              |
+| Run script in 64-bit PowerShell            | `Yes`             |
+| Script output data type                    | `Integer`         |
+| Operator                                   | `Equals`          |
+| Value                                      | `0`               |
+
+This configuration ensures the upgrade will only run on devices that pass the TPM check.
+
+---
 
 Created by Virtual Caffeine IO  
 https://virtualcaffeine.io
