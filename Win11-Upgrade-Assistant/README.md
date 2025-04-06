@@ -59,7 +59,6 @@ exit 0
 
 ## 🚀 Version 1.1.0 Enhancements
 
-- ✅ **Improved detection script** now verifies Windows 11 24H2 or later
 - ✅ **Optional requirement script** for TPM 2.0+ support
 - 🔁 Retains automatic cleanup task (removes ISO, logs after 7 days)
 
