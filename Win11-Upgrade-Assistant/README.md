@@ -1,135 +1,76 @@
+# Windows 11 Upgrade via Intune - Public Package
 
-# Win11 Upgrade Assistant for Intune (Public Version)
-
-Author: Virtual Caffeine IO  
-Website: https://virtualcaffeine.io
+This solution enables a user-interactive Windows 11 upgrade through Microsoft Intune by downloading a Windows 11 ISO via AzCopy, mounting it, and launching `setup.exe` with ServiceUI to ensure it shows on the user's desktop.
 
 ---
 
-## 🔄 Overview
-This PowerShell-based package enables a user-interactive upgrade to **Windows 11 24H2** via Intune, using a **downloadable ISO hosted in Azure Blob Storage**.
+## 📁 Folder Contents
 
-The package includes:
-- Script to download the ISO via **AzCopy**
-- Launches `setup.exe` using **ServiceUI.exe** (user-interactive, no admin rights required)
-- Automatically schedules a cleanup script to run **7 days after upgrade**
-- All logs go to the **Intune log folder** for easy retrieval
-
----
-
-## ✨ What You Need
-
-- An **Azure Storage Account** with a container for your ISO
-- The official **Windows 11 ISO** (24H2 or newer)
-- A valid **SAS token** with read access
-- A **device group** in Intune to assign the app
-- Microsoft tools:
-  - AzCopy (download: https://aka.ms/downloadazcopy)
-  - ServiceUI.exe (from MDT toolkit)
+| File                              | Description                                        |
+|-----------------------------------|----------------------------------------------------|
+| `Launch-Win11-Setup.ps1`          | Main upgrade script for Intune deployment (SYSTEM) |
+| `Files\azcopy.exe`                | 🔺 You must download from Microsoft (see below)    |
+| `Files\ServiceUI.exe`             | 🔺 Get from Microsoft Deployment Toolkit or OSD     |
+| `Scripts\DetectionRule.ps1`       | Detection script to confirm upgrade was triggered  |
 
 ---
 
-## 📂 ISO Setup Instructions
+## ☁️ Upload ISO to Azure Blob Storage
 
-### Step 1: Upload ISO to Azure
-1. Go to your Azure Storage Account
-2. Create a new **container** (e.g., `win11`)
-3. Upload the ISO (e.g., `Win11.iso`)
-
-### Step 2: Generate a SAS Token
-1. In the container, select the ISO
-2. Click **"Generate SAS"**
-3. Set **permissions** to `Read (r)`
-4. Set a long **expiry date** (e.g., 1 year)
-5. Copy:
-   - **Blob URL** (e.g., `https://yourstorage.blob.core.windows.net/win11/Win11.iso`)
-   - **SAS Token** (starts with `?sv=...`)
+1. Upload the Windows 11 ISO to an Azure Blob container.
+2. Generate a **Blob SAS URL** with read access (valid at least 7 days).
+3. Replace the placeholder in `Launch-Win11-Setup.ps1`:
+   ```powershell
+   $blobUrl = "<YOUR FULL BLOB SAS URL HERE>"
+   ```
 
 ---
 
-## 📝 Configure the Script
-Open `Launch-Win11-AzCopy.ps1` and update:
+## 🔧 Intune Configuration
 
-```powershell
-$blobUrl = "<Your Blob URL>"      # e.g., https://yourstorage.blob.core.windows.net/win11/Win11.iso
-$sasToken = "<Your SAS Token>"    # starts with ? and includes &sig=...
+**Install command:**
+```
+powershell.exe -ExecutionPolicy Bypass -File Launch-Win11-Setup.ps1
 ```
 
-Do NOT share your real SAS token publicly.
-
----
-
-## 📄 Intune Win32 App Setup
-
-### Step 1: Prepare the App
-1. Download and extract this repo
-2. Replace:
-   - `Files\azcopy.exe` with real AzCopy binary
-   - `Files\ServiceUI.exe` with real MDT binary
-3. Re-zip the full folder
-
-### Step 2: Convert to `.intunewin`
-Use the **Microsoft Win32 Content Prep Tool**:
-```bash
-IntuneWinAppUtil.exe -c . -s Launch-Win11-AzCopy.ps1 -o .
+**Uninstall command:**
 ```
-
-### Step 3: Create App in Intune
-
-### ✅ Install and Uninstall Commands
-
-#### Install Command
-```powershell
-powershell.exe -ExecutionPolicy Bypass -File Launch-Win11-AzCopy.ps1
-```
-
-#### Uninstall Command
-No uninstaller is required for this upgrade package.  
-You may leave this blank or use a simple script that returns an exit code of `0` to satisfy Intune’s requirements.
-
-Example placeholder uninstall script:
-```powershell
 exit 0
 ```
 
-#### Detection Rule:
-- Type: **Script**
-- Script:
-```powershell
-if (Test-Path "C:\ProgramData\Win11Assistant\IME-Just-Ran.txt") { exit 0 } else { exit 1 }
+**Install behavior:** `System`  
+**Detection rule:** Use script `Scripts\DetectionRule.ps1`  
+**Assignment:** Assign to a device group of Windows 10 company-owned devices  
+**Filter (optional):** Exclude known kiosk or special-role devices
+
+---
+
+## 🧩 Required Files
+
+- **AzCopy**  
+  📥 Download from [Microsoft's AzCopy page](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10)
+
+- **ServiceUI.exe**  
+  📥 Comes with Microsoft Deployment Toolkit (MDT) or available via OSDCloud:  
+  [https://osdcloud.com](https://osdcloud.com)
+
+---
+
+## 📝 Logs
+
+Log file path:
+```
+C:\ProgramData\Win11Assistant\Win11UpgradeAssistant.log
+```
+
+Detection marker:
+```
+C:\ProgramData\Win11Assistant\IME-Just-Ran.txt
 ```
 
 ---
 
-## 🛡 Assignment
-- **Assignment type**: Available for Enrolled Devices
-- **Group**: Use a **device group**, not user group
-- Suggested group: All corporate-owned Windows 10 devices
+## 👤 Author
 
-**Optional filter**: Exclude kiosks or special-purpose devices
-
----
-
-## ✅ Post-Install Behavior
-- Shows upgrade UI to logged-in user
-- Downloads ISO to `C:\ProgramData\Win11Assistant`
-- Logs to Intune log path:
-  - `Win11Upgrade-Assistant.log`
-  - `Win11Upgrade-Remediation.log`
-- Creates scheduled task: `Win11Cleanup7Days`
-- Cleanup script runs 7 days later and:
-  - Unmounts ISO
-  - Deletes ISO and `IME-Just-Ran.txt`
-
----
-
-## ℹ️ Notes
-- The upgrade is **interactive** — users click Next, Accept, etc.
-- This process works with **non-admin users** via `ServiceUI`
-- ISO download is from Azure Blob — make sure it's **fast + public only via SAS**
-
----
-
-## 🚀 Credits
-Created by **Virtual Caffeine IO**  
+**Virtual Caffeine IO**  
 https://virtualcaffeine.io
