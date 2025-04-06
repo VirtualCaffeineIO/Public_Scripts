@@ -3,6 +3,7 @@
     Windows 11 Upgrade deployment script for Intune.
 .DESCRIPTION
     Downloads Windows 11 ISO using AzCopy, mounts it, and launches setup.exe via ServiceUI from SYSTEM.
+    Also schedules a cleanup task to run 7 days later.
 .AUTHOR
     Virtual Caffeine IO
     https://virtualcaffeine.io
@@ -13,6 +14,8 @@ $proofPath = "C:\ProgramData\Win11Assistant\IME-Just-Ran.txt"
 $isoPath = "C:\ProgramData\Win11Assistant\Win11.iso"
 $azCopyPath = "$PSScriptRoot\Files\azcopy.exe"
 $serviceUIPath = "$PSScriptRoot\Files\ServiceUI.exe"
+$cleanupScriptSource = "$PSScriptRoot\Scripts\Cleanup-Win11Assistant.ps1"
+$cleanupScriptDest = "C:\ProgramData\Win11Assistant\Cleanup-Win11Assistant.ps1"
 
 # ===============================================
 # Replace this with your full Azure Blob SAS URL:
@@ -58,4 +61,17 @@ try {
 } catch {
     Write-Log "Failed to launch setup: $_"
     exit 1
+}
+
+# Schedule cleanup task for 7 days later
+try {
+    Copy-Item $cleanupScriptSource -Destination $cleanupScriptDest -Force
+    $cleanupAction = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-ExecutionPolicy Bypass -File `"$cleanupScriptDest`""
+    $cleanupTrigger = New-ScheduledTaskTrigger -Once -At ((Get-Date).AddDays(7))
+    $cleanupPrincipal = New-ScheduledTaskPrincipal -UserId "SYSTEM" -LogonType ServiceAccount -RunLevel Highest
+    $cleanupSettings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
+    Register-ScheduledTask -TaskName "Win11CleanupTask" -Action $cleanupAction -Trigger $cleanupTrigger -Principal $cleanupPrincipal -Settings $cleanupSettings -Force
+    Write-Log "Scheduled cleanup task 'Win11CleanupTask' for 7 days later."
+} catch {
+    Write-Log "Failed to schedule cleanup task: $_"
 }

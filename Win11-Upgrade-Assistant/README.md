@@ -2,8 +2,6 @@
 
 This solution enables a user-interactive Windows 11 upgrade through Microsoft Intune by downloading a Windows 11 ISO via AzCopy, mounting it, and launching `setup.exe` with ServiceUI to ensure it shows on the user's desktop.
 
-The script will first downlaod teh ISO, mount eh ISO then launch setup in the System context for the Non-Admin user to click through
-
 ---
 
 ## 📁 Folder Contents
@@ -55,6 +53,29 @@ exit 0
 - **ServiceUI.exe**  
   📥 Comes with Microsoft Deployment Toolkit (MDT) or available via OSDCloud:  
   [https://osdcloud.com](https://osdcloud.com)
+
+---
+
+
+## 🚀 Version 1.1.0 Enhancements
+
+- ✅ **Improved detection script** now verifies Windows 11 24H2 or later
+- ✅ **Optional requirement script** for TPM 2.0+ support
+- 🔁 Retains automatic cleanup task (removes ISO, logs after 7 days)
+
+To use the TPM requirement:
+1. In Intune, add a requirement rule using `Scripts\Requirement-TPM2.ps1`
+2. Set output type to `Integer`, operator `Equals`, value `0` (exit code 0 = pass)
+
+
+## 🧼 Scheduled Cleanup
+
+This package now includes a scheduled task that automatically removes the ISO and logs 7 days after the upgrade script runs.
+
+The script:
+- Deletes `Win11.iso`, logs, and detection marker
+- Is registered as `Win11CleanupTask`
+- Can be adjusted in `Launch-Win11-Setup.ps1`
 
 ---
 
