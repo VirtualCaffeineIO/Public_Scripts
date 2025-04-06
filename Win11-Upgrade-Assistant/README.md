@@ -2,6 +2,8 @@
 
 This solution enables a user-interactive Windows 11 upgrade through Microsoft Intune by downloading a Windows 11 ISO via AzCopy, mounting it, and launching `setup.exe` with ServiceUI to ensure it shows on the user's desktop.
 
+The script will first downlaod teh ISO, mount eh ISO then launch setup in the System context for the Non-Admin user to click through
+
 ---
 
 ## 📁 Folder Contents
