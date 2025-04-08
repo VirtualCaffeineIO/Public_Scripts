@@ -19,11 +19,16 @@ I like to create a fie structure like -
 
 Create a new Win32 app in Intune -
 
-Install command: powershell.exe -windowstyle hidden -executionpolicy bypass -command .\install.ps1
-Uninstall command: powershell.exe -windowstyle hidden -executionpolicy bypass -command .\uninstall.ps1
+Install command: powershell.exe -windowstyle hidden -executionpolicy bypass -command .\TeamsNew-Install.ps1
+
+Uninstall command: powershell.exe -windowstyle hidden -executionpolicy bypass -command .\TeamsNew-Uninstall.ps1
+
 Installation time required (mins): Keep default, which is 60 minutes.
+
 Allow available uninstall: Yes
+
 Install behavior: System
+
 Device restart behavior: Select No specific action.
 
 Set your requirements to -
