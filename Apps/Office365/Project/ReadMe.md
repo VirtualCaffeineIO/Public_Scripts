@@ -1,6 +1,7 @@
 Important information you need while creating the app in Intune:
 
 Install command: setup.exe /configure project.xml
+
 Uninstall command: setup.exe /configure remove.xml
 
 Detection:
