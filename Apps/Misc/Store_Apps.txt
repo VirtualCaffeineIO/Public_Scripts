@@ -1,5 +1,7 @@
-I setup uninstalls for these itms int hte Microsfot Store
+I setup uninstalls for these items in the Microsfot Store (new)
+I will assign a group of devices Uninstall
 
+Publish iunt eh System context to "all devices"
 
 Clip Champ - 9P1J8S7CCWWT
  
