@@ -10,3 +10,7 @@ Registry: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall
 Value name: Path
 
 Detection method: Value exists
+
+Retieve the language ID here
+
+https://learn.microsoft.com/en-us/office/2016/language/language-identifiers-optionstate-id-values
