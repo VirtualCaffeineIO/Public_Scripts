@@ -9,6 +9,6 @@ The Language packs are meant to be published as "Available" for All Users" or a 
 You can make a dynamic group key's off the users language.
 
 
-You can host teh XML files on externally accessible storage such as an Azure blob. 
+You can host the XML files on externally accessible storage such as an Azure blob. 
 
 The xml may be called with -XMLURL "https://mydomain.com/xmlfile.xml"
