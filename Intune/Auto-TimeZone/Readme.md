@@ -71,10 +71,15 @@ Now finally, you'll need to set the Automatic Time Zone selector to be on. This 
 Here are some basic script commands you can use, but best to wrap these up with logging... or don't :)
 
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\tzautoupdate\" -Name "Start" -Type "DWORD" -Value "3" -Force
+
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location" -Name "Value" -Type "String" -Value "Allow" -Force
+
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Sensor\Overrides\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}" -Name "SensorPermissionState" -Type "DWord" -Value 1 -Force
+
 Start-Service -Name "lfsvc" -ErrorAction SilentlyContinue
+
 W32tm /resync /force
+
 
 VOILA! You now have every location service soft disabled, except for the Settings app which is always on. 
 In turn, your users have the control they need if they'd rather have Weather or News location on.
