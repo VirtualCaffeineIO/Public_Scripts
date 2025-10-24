@@ -1,3 +1,8 @@
+####
+# Original script from hahaman14 https://www.reddit.com/r/Intune/comments/1i6ncns/windows_update_remediation_v2/
+#
+# 
+####
 # --- Minimum required builds ---
 $MinWin10Build = 19045  # Windows 10 22H2
 $MinWin11Build = 26100  # Windows 11 24H2
