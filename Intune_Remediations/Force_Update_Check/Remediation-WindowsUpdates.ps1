@@ -1,3 +1,10 @@
+####
+# 
+#
+# Original script from hahaman14 https://www.reddit.com/r/Intune/comments/1i6ncns/windows_update_remediation_v2/
+####
+# This Remediation creates a reboot task at 11:59PM if the devices has not been rebooted in the prior 1-day
+# You may not want that for kiosks, so use with caution
 #Run DISM
 try {Repair-WindowsImage -RestoreHealth -NoRestart -Online -LogPath "C:\ProgramData\Microsoft\IntuneManagementExtension\Logs\#DISM.log" -Verbose -ErrorAction SilentlyContinue}
 catch {Write-Output "DISM error occurred. Check logs"}
