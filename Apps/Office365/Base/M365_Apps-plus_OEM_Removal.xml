@@ -1,0 +1,33 @@
+<Configuration>
+
+  <!-- Remove all existing Office products (OEM, trials, Click-to-Run) -->
+  <Remove All="TRUE" />
+
+  <!-- Install Microsoft 365 Apps -->
+  <Add OfficeClientEdition="64" Channel="Current">
+    <Product ID="O365ProPlusRetail">
+      <Language ID="en-us" />
+      <!-- Optional app exclusions -->
+      <!-- <ExcludeApp ID="Access" /> -->
+      <!-- <ExcludeApp ID="Publisher" /> -->
+      <!-- <ExcludeApp ID="OneNote" /> -->
+      <!-- <ExcludeApp ID="Teams" /> -->
+    </Product>
+  </Add>
+
+  <!-- Silent install behavior -->
+  <Display Level="None" AcceptEULA="TRUE" />
+
+  <!-- Update behavior -->
+  <Updates Enabled="TRUE" Channel="Current" />
+
+  <!-- Shared computer licensing (optional) -->
+  <!-- <Property Name="SharedComputerLicensing" Value="1" /> -->
+
+  <!-- Auto activate if licensing allows -->
+  <Property Name="AUTOACTIVATE" Value="1" />
+
+  <!-- Force close any running Office apps -->
+  <Property Name="FORCEAPPSHUTDOWN" Value="TRUE" />
+
+</Configuration>
