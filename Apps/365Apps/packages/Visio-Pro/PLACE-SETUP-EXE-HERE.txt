@@ -1,0 +1,2 @@
+Copy the ODT setup.exe into this folder before packaging.
+Evergreen ODT: https://www.microsoft.com/download/details.aspx?id=49117

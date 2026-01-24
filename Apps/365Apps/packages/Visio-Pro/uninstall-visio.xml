@@ -1,0 +1,6 @@
+<Configuration ID="visio-addon-uninstall">
+  <Remove>
+    <Product ID="VisioProRetail" />
+  </Remove>
+  <Display Level="None" AcceptEULA="TRUE" />
+</Configuration>
