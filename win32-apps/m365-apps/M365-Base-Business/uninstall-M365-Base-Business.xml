@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  M365-Base-Business : uninstall-M365-Base-Business.xml
+
+  Removes Microsoft 365 Apps for business and every language installed for it.
+
+  Scoped to the product rather than All="TRUE", so Visio and Project survive.
+  No Language element, so the ODT discovers and removes every installed
+  language for the product rather than leaving a da-dk install half removed.
+-->
+<Configuration ID="M365-Base-Business-Uninstall">
+
+  <Remove All="FALSE">
+    <Product ID="O365BusinessRetail" />
+  </Remove>
+
+  <Display Level="None" AcceptEULA="TRUE" />
+
+  <Property Name="FORCEAPPSHUTDOWN" Value="TRUE" />
+
+</Configuration>

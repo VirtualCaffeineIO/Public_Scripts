@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  M365-Project : install-M365-Project.xml
+
+  Project desktop app (Project Online Desktop Client, the desktop app that
+  comes with Planner and Project Plan 3 or Planner and Project Plan 5). Add-on
+  to an existing Microsoft 365 Apps installation. Company Portal available
+  install.
+
+  Worked example estate:
+    The device already has Microsoft 365 Apps, installed by M365-Base or
+    M365-Base-Business, on Monthly Enterprise Channel, 64-bit, en-us base
+    language, possibly with da-dk added.
+
+  No Channel attribute. No OfficeClientEdition attribute. Both omissions are
+  deliberate and both are load bearing.
+
+  Per the ODT reference on Microsoft Learn: if Microsoft 365 Apps is already
+  installed and Channel is not specified, the ODT matches the channel of the
+  existing installation, and the same applies to architecture when
+  OfficeClientEdition is not specified.
+
+  Hard-coding a channel here would re-channel the whole Office installation on
+  any device that is not already on that channel, at the next update cycle
+  rather than at install time. One user asking for Project should not move that
+  device's Office to a different servicing channel. See MIGRATION.md, defect 2.
+
+  Note the documented contradiction: the ODT configuration reference states
+  that Channel is required alongside Version="MatchInstalled", while the
+  Microsoft 365 Apps Rangers best practices page uses exactly this scenario as
+  its worked example and omits Channel on purpose. This file follows the best
+  practices page. Validate on a device that is not on Monthly Enterprise
+  Channel before broad release. Full detail in README.md.
+
+  Language matching. MatchInstalled with TargetProduct="All" gives Project the
+  same languages already present across all installed products, and works
+  whether the base is the enterprise or the business product ID.
+-->
+<Configuration ID="M365-Project">
+
+  <Add Version="MatchInstalled" AllowCdnFallback="TRUE">
+    <Product ID="ProjectProRetail">
+      <Language ID="MatchInstalled" TargetProduct="All" />
+    </Product>
+  </Add>
+
+  <Display Level="None" AcceptEULA="TRUE" />
+
+  <Property Name="FORCEAPPSHUTDOWN" Value="FALSE" />
+
+</Configuration>

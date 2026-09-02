@@ -1,6 +1,0 @@
-<Configuration ID="project-addon-uninstall">
-  <Remove>
-    <Product ID="ProjectProRetail" />
-  </Remove>
-  <Display Level="None" AcceptEULA="TRUE" />
-</Configuration>

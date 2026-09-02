@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  M365-Lang-da-dk : install-M365-Lang-da-dk.xml
+
+  Danish (Denmark) language pack, da-dk, added to an existing Microsoft 365
+  Apps installation. Company Portal available install.
+
+  Worked example estate:
+    Base language is en-us. da-dk is the requestable extra. The device already
+    has Microsoft 365 Apps on Monthly Enterprise Channel, 64-bit.
+
+  da-dk is the worked example and it runs consistently through all three files
+  in this folder: this XML, the uninstall XML and Detect-M365LangDaDk.ps1. To
+  offer another language, copy the whole folder and change the culture code in
+  all three files together. Learn's language table gives the supported culture
+  codes. Danish companion proofing languages are Danish, English, German and
+  Swedish.
+
+  WHY THERE IS NO Channel AND NO OfficeClientEdition
+
+  Same reasoning as the Visio and Project add-on packages. Per the ODT
+  reference on Microsoft Learn, when Microsoft 365 Apps is already installed
+  and Channel is not specified the ODT matches the channel of the existing
+  installation, and the same applies to architecture when OfficeClientEdition
+  is omitted. A language request must not re-channel the device's Office.
+
+  Version="MatchInstalled" pins the language pack to the build already on the
+  device. Without it, the ODT installs the latest available build, which can
+  drag the whole installation forward on a schedule nobody chose, just because
+  a user asked for Danish.
+
+  Note the documented contradiction, covered in full in README.md: the ODT
+  configuration reference states Channel is required alongside
+  Version="MatchInstalled", while the Microsoft 365 Apps Rangers best practices
+  page gives a language pack config as its worked example and omits Channel
+  deliberately. This file follows the best practices page.
+
+  WHY THERE IS NO TargetProduct ATTRIBUTE HERE
+
+  This is worth reading carefully, because it contradicts a common assumption.
+
+  TargetProduct is an attribute of the Language element, and per the ODT
+  reference it is only meaningful "When using MatchInstalled", meaning when the
+  Language ID itself is MatchInstalled. It answers the question "which product's
+  installed languages should I copy". Here the Language ID is the literal value
+  da-dk, so there is nothing to match and TargetProduct has no effect.
+
+  The Rangers best practices page shows exactly this shape for a language pack:
+  Add Version="MatchInstalled", Product ID="LanguagePack", and a literal
+  Language ID. No TargetProduct.
+
+  There is also a reason to actively avoid adding it. The ExcludeApp section of
+  the ODT reference says that when a configuration file used against an
+  existing install lists all the languages already on the device, its ExcludeApp
+  setting OVERRIDES the previous ExcludeApp settings, and when it does not list
+  them all, the two are COMBINED. Adding
+  Language ID="MatchInstalled" TargetProduct="All" to this file would enumerate
+  every installed language, and this file specifies no ExcludeApp elements at
+  all. The override path is therefore the one that would apply, and it could
+  reinstate applications the base package deliberately excluded, such as new
+  Outlook. A language request must not undo an application exclusion decision.
+
+  See MIGRATION.md, defect 3, for the full account.
+-->
+<Configuration ID="M365-Lang-da-dk">
+
+  <Add Version="MatchInstalled" AllowCdnFallback="TRUE">
+    <Product ID="LanguagePack">
+      <Language ID="da-dk" />
+    </Product>
+  </Add>
+
+  <Display Level="None" AcceptEULA="TRUE" />
+
+  <Property Name="FORCEAPPSHUTDOWN" Value="FALSE" />
+
+</Configuration>

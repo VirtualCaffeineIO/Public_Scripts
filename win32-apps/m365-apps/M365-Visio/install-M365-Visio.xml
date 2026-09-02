@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  M365-Visio : install-M365-Visio.xml
+
+  Visio desktop app (Visio Plan 2 subscription). Add-on to an existing
+  Microsoft 365 Apps installation. Company Portal available install.
+
+  Worked example estate:
+    The device already has Microsoft 365 Apps, installed by M365-Base or
+    M365-Base-Business, on Monthly Enterprise Channel, 64-bit, en-us base
+    language, possibly with da-dk added.
+
+  READ THIS BEFORE YOU CHANGE ANYTHING IN THIS FILE
+
+  There is no Channel attribute here. There is no OfficeClientEdition attribute
+  here. Both omissions are deliberate and both are load bearing.
+
+  Per the ODT reference on Microsoft Learn: if Microsoft 365 Apps is already
+  installed and the Channel attribute is not specified, the ODT matches the
+  channel of the existing installation. If Microsoft 365 Apps is installed and
+  OfficeClientEdition is not specified, the ODT matches the architecture of the
+  existing installation.
+
+  The previous version of this package hard-coded Channel="MonthlyEnterprise".
+  On a device running Current Channel that does not fail. It re-channels the
+  ENTIRE Office installation on that device, quietly, and the change lands at
+  the next update cycle rather than at install time, so nobody connects the
+  Visio request to the Office estate drifting. One user asking for Visio
+  should not move that device's Office to a different servicing channel. See
+  MIGRATION.md, defect 2.
+
+  A DOCUMENTED CONTRADICTION YOU SHOULD KNOW ABOUT
+
+  Two Microsoft Learn pages disagree about Version="MatchInstalled".
+
+  The ODT configuration reference says, of the Version attribute:
+      "When you use Version="MatchInstalled", the Channel attribute is
+       required."
+
+  The Microsoft 365 Apps Rangers best practices page, "Build dynamic, lean, and
+  universal packages for Microsoft 365 Apps", gives this exact scenario as its
+  worked example and shows Version="MatchInstalled" with NO Channel attribute,
+  explaining that removing Channel is what makes the package work across all
+  update channels.
+
+  This file follows the best practices page, because that page addresses this
+  precise scenario, second installs onto an existing Office, and because
+  supplying Channel is the thing that causes the harm being fixed. Validate the
+  behaviour in your own estate on a device that is NOT on Monthly Enterprise
+  Channel before broad release. That is the test that settles it for you.
+
+  Language matching. Language ID="MatchInstalled" with TargetProduct="All"
+  installs Visio in the same set of languages already present across all
+  installed products, so a user who has da-dk on their Office gets da-dk on
+  their Visio without anyone requesting it twice. TargetProduct="All" is used
+  rather than a specific product ID so this one file serves both the enterprise
+  and the business base packages.
+-->
+<Configuration ID="M365-Visio">
+
+  <Add Version="MatchInstalled" AllowCdnFallback="TRUE">
+    <Product ID="VisioProRetail">
+      <Language ID="MatchInstalled" TargetProduct="All" />
+    </Product>
+  </Add>
+
+  <Display Level="None" AcceptEULA="TRUE" />
+
+  <Property Name="FORCEAPPSHUTDOWN" Value="FALSE" />
+
+</Configuration>
