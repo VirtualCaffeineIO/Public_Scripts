@@ -20,7 +20,7 @@ The goal is to run this ONCE then use a standard detect and remediate script to 
 
 ## Author
 
-**Virtualized Caffeine IO**  
+**Virtual Caffeine IO**  
 [https://virtualcaffeine.io](https://virtualcaffeine.io)
 
 ---

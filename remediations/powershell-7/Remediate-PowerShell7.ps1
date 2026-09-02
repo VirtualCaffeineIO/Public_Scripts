@@ -7,7 +7,7 @@ Standardizes installation method of PowerShell 7 using Winget for update managem
 Removes MSI/EXE-based installs and reinstalls via Winget.
 
 .AUTHOR
-Virtualized Caffeine IO
+Virtual Caffeine IO
 https://virtualcaffeine.io
 #>
 

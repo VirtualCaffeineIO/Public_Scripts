@@ -197,7 +197,7 @@ function Add-DeviceToNewGroup {
 # === 2) Ensure all "recent" devices are in group ===
 foreach ($md in $managedDevices) {
     if (-not $md.azureADDeviceId) {
-        Write-Warning ("Managed device {0} has no azureADDeviceId – skipping." -f $md.deviceName)
+        Write-Warning ("Managed device {0} has no azureADDeviceId, skipping." -f $md.deviceName)
         continue
     }
 
@@ -208,7 +208,7 @@ foreach ($md in $managedDevices) {
             continue
         }
     } else {
-        Write-Warning ("Managed device {0} has no enrolledDateTime – skipping." -f $md.deviceName)
+        Write-Warning ("Managed device {0} has no enrolledDateTime, skipping." -f $md.deviceName)
         continue
     }
 
@@ -239,7 +239,7 @@ foreach ($member in $groupMembers) {
     $aadDevice   = $member
 
     if (-not $aadDevice.deviceId) {
-        Write-Warning ("AAD device {0} has no deviceId – skipping." -f $aadDevice.displayName)
+        Write-Warning ("AAD device {0} has no deviceId, skipping." -f $aadDevice.displayName)
         continue
     }
 
@@ -248,7 +248,7 @@ foreach ($member in $groupMembers) {
         $mdUri2   = "https://graph.microsoft.com/v1.0/deviceManagement/managedDevices?`$filter=$([uri]::EscapeDataString($mdFilter))&`$select=enrolledDateTime,deviceName"
         $mdResult = Invoke-GraphGet -Uri $mdUri2 -Token $accessToken
         if (-not $mdResult.value -or $mdResult.value.Count -eq 0) {
-            Write-Warning ("No Intune managedDevice found for {0} – skipping." -f $aadDevice.displayName)
+            Write-Warning ("No Intune managedDevice found for {0}, skipping." -f $aadDevice.displayName)
             continue
         }
         $md = $mdResult.value[0]
@@ -260,7 +260,7 @@ foreach ($member in $groupMembers) {
 
     $enrolledUtc = ([datetime]$md.enrolledDateTime).ToUniversalTime()
     if ($enrolledUtc -lt $cutoffDateTimeUtc) {
-        Write-Output ("Device {0} enrolled {1} UTC – removing from group." -f $md.deviceName, $enrolledUtc)
+        Write-Output ("Device {0} enrolled {1} UTC, removing from group." -f $md.deviceName, $enrolledUtc)
         try {
             $delUri = "https://graph.microsoft.com/v1.0/groups/$NewDevicesGroupId/members/$dirDeviceId/`$ref"
             Invoke-GraphDelete -Uri $delUri -Token $accessToken

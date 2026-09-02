@@ -12,5 +12,5 @@ These scripts detect and standardize GitHub CLI installations using Microsoft In
 - Logs to: `C:\ProgramData\Microsoft\IntuneManagementExtension\Logs\GitHubCLIRemediation.log`
 
 ## Author
-**Virtualized Caffeine IO**  
+**Virtual Caffeine IO**  
 https://virtualcaffeine.io

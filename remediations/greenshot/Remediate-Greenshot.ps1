@@ -12,7 +12,7 @@ Logs the entire process to Intune's logs folder for traceability.
 - Logs to: C:\ProgramData\Microsoft\IntuneManagementExtension\Logs\GreenshotRemediation.log
 
 .AUTHOR
-Virtualized Caffeine IO
+Virtual Caffeine IO
 https://www.virtualcaffeine.io
 #>
 

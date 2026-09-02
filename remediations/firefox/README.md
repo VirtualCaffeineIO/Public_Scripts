@@ -12,5 +12,5 @@ These scripts detect and standardize Mozilla Firefox installations using Microso
 - Logs to: `C:\ProgramData\Microsoft\IntuneManagementExtension\Logs\FirefoxRemediation.log`
 
 ## Author
-**Virtualized Caffeine IO**  
+**Virtual Caffeine IO**  
 https://virtualcaffeine.io

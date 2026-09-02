@@ -11,7 +11,7 @@ Checks both registry uninstall entries and Winget-installed apps.
 1 = 7-Zip is installed
 
 .AUTHOR
-Virtualized Caffeine IO
+Virtual Caffeine IO
 https://virtualcaffeine.io
 #>
 

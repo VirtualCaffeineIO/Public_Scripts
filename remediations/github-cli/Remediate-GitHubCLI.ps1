@@ -3,7 +3,7 @@
 Uninstalls legacy GitHub CLI installs and reinstalls using Winget.
 
 .AUTHOR
-Virtualized Caffeine IO
+Virtual Caffeine IO
 https://virtualcaffeine.io
 #>
 

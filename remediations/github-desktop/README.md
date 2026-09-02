@@ -12,5 +12,5 @@ These scripts detect and standardize GitHub Desktop installations using Microsof
 - Logs to: `C:\ProgramData\Microsoft\IntuneManagementExtension\Logs\GitHubDesktopRemediation.log`
 
 ## Author
-**Virtualized Caffeine IO**  
+**Virtual Caffeine IO**  
 https://virtualcaffeine.io

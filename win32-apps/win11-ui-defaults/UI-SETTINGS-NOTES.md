@@ -1,4 +1,4 @@
-# Windows 11 UI Settings – Intune Scripts
+# Windows 11 UI Settings: Intune Scripts
 
 This folder contains Intune-friendly solutions for configuring and enforcing user interface preferences on Windows 11 devices.
 

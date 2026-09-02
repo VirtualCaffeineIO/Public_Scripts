@@ -7,7 +7,7 @@ Standardizes installation method of Chrome using Winget for update management.
 Removes MSI/EXE-based installs and reinstalls via Winget.
 
 .AUTHOR
-Virtualized Caffeine IO
+Virtual Caffeine IO
 https://virtualcaffeine.io
 #>
 

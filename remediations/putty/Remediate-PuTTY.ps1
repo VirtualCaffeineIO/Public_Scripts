@@ -3,7 +3,7 @@
 Uninstalls legacy PuTTY installs and reinstalls using Winget.
 
 .AUTHOR
-Virtualized Caffeine IO
+Virtual Caffeine IO
 https://virtualcaffeine.io
 #>
 

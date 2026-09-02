@@ -12,5 +12,5 @@ These scripts detect and standardize PuTTY installations using Microsoft Intune 
 - Logs to: `C:\ProgramData\Microsoft\IntuneManagementExtension\Logs\PuTTYRemediation.log`
 
 ## Author
-**Virtualized Caffeine IO**  
+**Virtual Caffeine IO**  
 https://virtualcaffeine.io

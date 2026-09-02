@@ -1,4 +1,4 @@
-# Intune Remediation – Force Windows Update Reset & WUfB Scan
+# Intune Remediation: Force Windows Update Reset and WUfB Scan
 
 ## Overview
 

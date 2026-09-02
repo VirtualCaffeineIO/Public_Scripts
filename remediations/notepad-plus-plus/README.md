@@ -12,5 +12,5 @@ These scripts detect and standardize Notepad++ installations using Microsoft Int
 - Logs to: `C:\ProgramData\Microsoft\IntuneManagementExtension\Logs\NotepadPPRemediation.log`
 
 ## Author
-**Virtualized Caffeine IO**  
+**Virtual Caffeine IO**  
 https://virtualcaffeine.io

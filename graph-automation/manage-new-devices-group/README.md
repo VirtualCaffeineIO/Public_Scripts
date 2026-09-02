@@ -19,7 +19,7 @@ It ensures:
 
 Typical use case:
 > Automatically target **WUfB “Immediate Update”** policies to newly enrolled devices,  
-> then let them fall back into the **Production** ring after 24–30 days.
+> then let them fall back into the **Production** ring after 24 to 30 days.
 
 ---
 
@@ -68,8 +68,8 @@ The runbook uses Microsoft Graph to manage group membership.
 #### Client Secret
 1. Go to **Certificates & secrets → + New client secret**
 2. Name it (e.g. “AutomationSecret”) → choose **24 months** → **Add**
-3. Copy the **Value** (not the Secret ID!) — this will be used in the automation variables.  
-   ⚠️ Store it securely — **do not include it in scripts or documentation**.
+3. Copy the **Value** (not the Secret ID). This is used in the automation variables.  
+   ⚠️ Store it securely. **Do not include it in scripts or documentation**.
 
 ---
 
@@ -161,7 +161,7 @@ This ensures all **newly provisioned devices** get critical updates right away, 
 ---
 
 ## 🧱 Integration Example (Intune WUfB)
-Use this runbook’s group (`All New Windows Devices`) as the assignment target for your **“Ring 0 – Immediate”** WUfB policy:
+Use this runbook’s group (`All New Windows Devices`) as the assignment target for your **“Ring 0, Immediate”** WUfB policy:
 
 | Setting | Ring 0 (New) | Ring 3 (Prod) |
 |----------|---------------|----------------|
@@ -169,7 +169,7 @@ Use this runbook’s group (`All New Windows Devices`) as the assignment target 
 | Quality deferral | 0 days | 7 days |
 | Deadline (feature) | 2 days | 14 days |
 | Deadline (quality) | 1 day | 7 days |
-| Grace period | 0–1 day | 2–3 days |
+| Grace period | 0 to 1 day | 2 to 3 days |
 | Restart behavior | Auto outside active hours | Auto outside active hours |
 
 This pairing ensures devices are fully patched before user deployment, then automatically shift to production policies when the 24-day timer expires.

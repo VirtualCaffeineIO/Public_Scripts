@@ -12,7 +12,7 @@ Logs the entire process to Intune's logs folder for traceability.
 - Logs to: C:\ProgramData\Microsoft\IntuneManagementExtension\Logs\7ZipRemediation.log
 
 .AUTHOR
-Virtualized Caffeine IO
+Virtual Caffeine IO
 https://virtualcaffeine.io
 #>
 

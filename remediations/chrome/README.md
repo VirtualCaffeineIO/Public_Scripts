@@ -12,5 +12,5 @@ These scripts detect and standardize Google Chrome installations using Microsoft
 - Logs to: `C:\ProgramData\Microsoft\IntuneManagementExtension\Logs\ChromeRemediation.log`
 
 ## Author
-**Virtualized Caffeine IO**  
+**Virtual Caffeine IO**  
 https://virtualcaffeine.io

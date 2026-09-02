@@ -3,7 +3,7 @@
 Detects any version of Notepad++ (legacy MSI/EXE or Winget) on the system.
 
 .AUTHOR
-Virtualized Caffeine IO
+Virtual Caffeine IO
 https://virtualcaffeine.io
 #>
 

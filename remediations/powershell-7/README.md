@@ -12,5 +12,5 @@ These scripts detect and enforce PowerShell 7 as the standard installation using
 - Logs to: `C:\ProgramData\Microsoft\IntuneManagementExtension\Logs\PowerShell7Remediation.log`
 
 ## Author
-**Virtualized Caffeine IO**  
+**Virtual Caffeine IO**  
 https://virtualcaffeine.io

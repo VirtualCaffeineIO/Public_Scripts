@@ -16,7 +16,7 @@ This folder contains a Proactive Remediation package for maintaining Windows 11 
    → **Reports** → **Endpoint analytics** → **Proactive remediations**
 
 2. Click **Create script package** and configure:
-   - **Name**: `Win11 UI Defaults – Compliance`
+   - **Name**: `Win11 UI Defaults (Compliance)`
    - **Detection script**: `Detect-Win11Defaults.ps1`
    - **Remediation script**: `Remediate-Win11Defaults.ps1`
    - **Run this script using the logged-on credentials**: ✅ Yes (User context)

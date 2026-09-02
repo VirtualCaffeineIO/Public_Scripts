@@ -12,5 +12,5 @@ These scripts detect and standardize Webex installations using Microsoft Intune 
 - Logs to: `C:\ProgramData\Microsoft\IntuneManagementExtension\Logs\WebexRemediation.log`
 
 ## Author
-**Virtualized Caffeine IO**  
+**Virtual Caffeine IO**  
 https://virtualcaffeine.io

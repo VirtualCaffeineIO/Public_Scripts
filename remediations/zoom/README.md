@@ -12,5 +12,5 @@ These scripts detect and standardize Zoom installations using Microsoft Intune R
 - Logs to: `C:\ProgramData\Microsoft\IntuneManagementExtension\Logs\ZoomRemediation.log`
 
 ## Author
-**Virtualized Caffeine IO**  
+**Virtual Caffeine IO**  
 https://virtualcaffeine.io

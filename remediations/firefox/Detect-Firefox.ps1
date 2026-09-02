@@ -6,7 +6,7 @@ Detects any version of Firefox (legacy MSI/EXE or Winget) on the system.
 Used in Intune Remediations to standardize installation via Winget. Triggers remediation if app is found via legacy install or missing entirely.
 
 .AUTHOR
-Virtualized Caffeine IO
+Virtual Caffeine IO
 https://virtualcaffeine.io
 #>
 

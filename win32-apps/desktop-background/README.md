@@ -8,10 +8,10 @@ This script deploys a custom desktop background on Windows 11 devices via Intune
 - Sets it as the desktop background for the currently logged-in user
 
 ## Files
-- `Set-Background.ps1` — main logic to download & set background
-- `Install.ps1` — wrapper to launch `Set-Background.ps1` in user context
-- `Uninstall.ps1` — optional cleanup/removal script
-- `Detection.ps1` — optional detection script for Intune
+- `Set-Background.ps1`: main logic to download and set the background
+- `Install.ps1`: wrapper to launch `Set-Background.ps1` in user context
+- `Uninstall.ps1`: optional cleanup and removal script
+- `Detection.ps1`: optional detection script for Intune
 
 ## Packaging Instructions
 1. Replace the `<REPLACE_WITH_YOUR_SAS_URL>` placeholder in `Install.ps1`
