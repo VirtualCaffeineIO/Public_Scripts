@@ -45,7 +45,7 @@ function Stop-Svc {
         Stop-Service -Name $Name -Force -ErrorAction SilentlyContinue
     }
     catch {
-        Log "Could not stop $Name: $($_.Exception.Message)"
+        Log "Could not stop ${Name}: $($_.Exception.Message)"
     }
 }
 
@@ -56,7 +56,7 @@ function Start-Svc {
         Start-Service -Name $Name -ErrorAction SilentlyContinue
     }
     catch {
-        Log "Could not start $Name: $($_.Exception.Message)"
+        Log "Could not start ${Name}: $($_.Exception.Message)"
     }
 }
 
