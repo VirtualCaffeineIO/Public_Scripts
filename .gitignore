@@ -1,0 +1,12 @@
+# Win32 packaging output
+*.intunewin
+Output/
+
+# Logs
+*.log
+
+# Editor and OS noise
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
