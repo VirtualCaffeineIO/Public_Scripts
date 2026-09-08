@@ -6,6 +6,26 @@ This package audits or creates a reusable Microsoft Intune and Windows Autopilot
 
 Report-only is the default. Nothing is created without `-Apply`.
 
+## Status, read before you run this anywhere that matters
+
+Version 1.1.0 has not been run against a live tenant since its last round of
+fixes. Its three offline checks pass and they prove the control path and the
+shape of every request it sends. They do not prove Microsoft Graph accepts
+those bodies, because nothing in the test suite talks to Graph.
+
+So: run it `-ReportOnly` first, which is the default and needs no switch, and do
+that against a lab or test tenant before you point it at anything real. After a
+first `-Apply`, open both Enrollment Status Page profiles in the Intune admin
+center and confirm three things by eye: that device use is allowed after an
+installation failure, that the installation timeout reads 60 minutes rather
+than a default, and that the custom error message is present. If those are
+blank or defaulted while the run reported `Created`, stop and report it.
+
+That check is not paranoia. Version 1.0.0 wrote Enrollment Status Pages to the
+Graph v1.0 endpoint, which silently accepts and discards every one of those
+settings, so the run reported success and the profile was not configured. That
+is fixed here and the fix is what has not been proven against a real tenant.
+
 ## Safety model
 
 - Report-only is the default.
