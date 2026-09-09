@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  M365-Base : install-M365-Base.xml
+
+  Microsoft 365 Apps for enterprise, required install on every device.
+
+  Worked example estate (substitute your own values):
+    Update channel  : Monthly Enterprise Channel
+    Architecture    : 64-bit
+    Base language   : en-us
+    Extra language  : da-dk, requested separately through M365-Lang-da-dk
+
+  This is the only package in the set that pins Channel and OfficeClientEdition.
+  It is the first install on the device, so there is nothing on the device for
+  the Office Deployment Tool to match against. Every other package in the set
+  deliberately omits both attributes and matches whatever this one established.
+
+  Product ID note. O365ProPlusRetail is the product ID Microsoft Learn maps to
+  Office 365 E3, Office 365 E5, Microsoft 365 E3 and Microsoft 365 E5. If your
+  tenant holds the standalone "Microsoft 365 Apps for enterprise" plan, or any
+  of the "(no Teams)" plans, Learn maps those to O365ProPlusEEANoTeamsRetail
+  instead. Check the plan table before you deploy. Using the wrong product ID
+  means Office installs but cannot activate.
+-->
+<Configuration ID="M365-Base">
+
+  <Add OfficeClientEdition="64"
+       Channel="MonthlyEnterprise"
+       AllowCdnFallback="TRUE">
+
+    <Product ID="O365ProPlusRetail">
+      <Language ID="en-us" />
+
+      <!--
+        Skype for Business. Excluded.
+        Skype for Business is still installed with new installations of
+        Microsoft 365 Apps unless it is excluded. The ExcludeApp ID for it is
+        "Lync", not "Skype". This estate has no Skype for Business dependency,
+        so it is excluded rather than installed and then hidden.
+      -->
+      <ExcludeApp ID="Lync" />
+
+      <!--
+        New Outlook for Windows. Excluded, deliberately, and stated here so the
+        decision is recorded rather than inherited by silence.
+
+        OutlookForWindows is the ExcludeApp ID for the new Outlook app. It is a
+        separate app from classic Outlook, which is ExcludeApp ID "Outlook".
+        Excluding OutlookForWindows leaves classic Outlook installed and
+        untouched.
+
+        The reasoning: the migration from classic Outlook to new Outlook is a
+        change of mail client, not a change of Office build. It carries its own
+        add-in compatibility work, its own user communications and its own
+        rollback plan. Bundling it into the base Office package means every
+        device that reinstalls Office also silently acquires a second mail
+        client on a schedule nobody chose. Excluding it here keeps that decision
+        in a policy you can time, and leaves the base package doing one job.
+
+        If your estate has already completed the new Outlook migration, delete
+        this line. Do not replace it with ExcludeApp ID="Outlook" unless you
+        intend to remove classic Outlook, which is a different decision.
+      -->
+      <ExcludeApp ID="OutlookForWindows" />
+
+      <!--
+        Groove and OneDrive are deliberately NOT excluded here.
+
+        The ODT reference page lists Groove and OneDrive as two separate
+        allowed ExcludeApp IDs, and then carries a note saying "For OneDrive,
+        use Groove." Those two statements do not agree, and Microsoft's own
+        pages use both forms: the ODT overview page shows
+        ExcludeApp ID="OneDrive" as the way to exclude OneDrive, while the
+        SharePoint page on Groove.exe shows ExcludeApp ID="Groove" as the way
+        to stop the previous OneDrive for Business sync app (Groove.exe) from
+        being installed.
+
+        Given that ambiguity, neither ID belongs in an estate-wide base
+        package. Excluding the wrong one takes the OneDrive sync client with
+        it, and Known Folder Move goes with the sync client. If you have a
+        genuine requirement to suppress OneDrive, do it in a narrow scoped
+        package and test the result on a reference device before it reaches
+        production. See MIGRATION.md, defect 5.
+      -->
+
+      <!--
+        Teams is deliberately NOT excluded.
+
+        Teams is included with new and existing installations of Microsoft 365
+        Apps on Windows, but only where a Teams service plan is in place. The
+        new Teams client is not bundled in the Microsoft 365 Apps offline
+        package, so the device needs internet access at install time to pick it
+        up. Because this package installs from the Office CDN rather than from
+        embedded source files, that requirement is already met.
+
+        If you need to suppress Teams, add ExcludeApp ID="Teams" here. Note
+        that an Online Repair can reinstall it, so the durable control is the
+        Group Policy setting or the Modern Apps Settings switch in the
+        Microsoft 365 Apps admin center, not the XML alone.
+      -->
+
+    </Product>
+
+    <!--
+      OEM and consumer Click-to-Run product IDs are removed as part of this
+      install. Every ID below is drawn from the supported product ID list on
+      Microsoft Learn. This is the only list of removable product IDs in this
+      package, and the detection script does not reference it. See MIGRATION.md,
+      defect 4, for why that matters.
+
+      Note that RemoveMSI below only handles Windows Installer based Office.
+      Click-to-Run consumer builds have to be named explicitly.
+    -->
+  </Add>
+
+  <Remove>
+    <Product ID="O365HomePremRetail" />
+    <Product ID="HomeStudent2021Retail" />
+    <Product ID="Home2024Retail" />
+    <Product ID="HomeBusiness2021Retail" />
+    <Product ID="HomeBusiness2024Retail" />
+    <Product ID="Personal2021Retail" />
+    <Product ID="OneNoteFreeRetail" />
+  </Remove>
+
+  <!-- Uninstalls 2007, 2010, 2013 and 2016 era Office installed by Windows Installer. -->
+  <RemoveMSI />
+
+  <Updates Enabled="TRUE" />
+
+  <Display Level="None" AcceptEULA="TRUE" />
+
+  <Property Name="FORCEAPPSHUTDOWN" Value="FALSE" />
+  <Property Name="PinIconsToTaskbar" Value="FALSE" />
+
+</Configuration>

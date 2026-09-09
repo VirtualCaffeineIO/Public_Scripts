@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  M365-Project : uninstall-M365-Project.xml
+
+  Removes the Project desktop app and every language installed for it, leaving
+  the base Microsoft 365 Apps installation alone.
+
+  All="FALSE" is explicit. All="TRUE" would remove every Microsoft 365 Apps
+  product and language on the device, which from a Company Portal uninstall
+  button would take the user's entire Office with it.
+
+  No Language element, so the ODT discovers and removes all installed languages
+  for Project rather than leaving a stranded da-dk install behind.
+-->
+<Configuration ID="M365-Project-Uninstall">
+
+  <Remove All="FALSE">
+    <Product ID="ProjectProRetail" />
+  </Remove>
+
+  <Display Level="None" AcceptEULA="TRUE" />
+
+  <Property Name="FORCEAPPSHUTDOWN" Value="FALSE" />
+
+</Configuration>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  M365-Visio : uninstall-M365-Visio.xml
+
+  Removes the Visio desktop app and every language installed for it, leaving
+  the base Microsoft 365 Apps installation alone.
+
+  All="FALSE" is explicit. All="TRUE" removes every Microsoft 365 Apps product
+  and language on the device, which from a Company Portal uninstall button
+  would take the user's entire Office with it.
+
+  No Language element, so the ODT discovers and removes all installed languages
+  for Visio. Naming en-us here would strip Visio's English and leave a stranded
+  da-dk Visio behind.
+-->
+<Configuration ID="M365-Visio-Uninstall">
+
+  <Remove All="FALSE">
+    <Product ID="VisioProRetail" />
+  </Remove>
+
+  <Display Level="None" AcceptEULA="TRUE" />
+
+  <Property Name="FORCEAPPSHUTDOWN" Value="FALSE" />
+
+</Configuration>

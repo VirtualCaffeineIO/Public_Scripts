@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  M365-Base : uninstall-M365-Base.xml
+
+  Removes Microsoft 365 Apps for enterprise and every language installed for it.
+
+  Remove is scoped to the product, not to All="TRUE". All="TRUE" removes every
+  Microsoft 365 Apps product and language on the device, including Visio and
+  Project. Those are separate Intune apps with their own lifecycle, so a base
+  uninstall must not take them with it. If you genuinely want to strip the
+  device back to nothing, that is a different configuration file and a
+  different decision.
+
+  No Language element is given. Per the ODT reference, omitting Language makes
+  the ODT discover and remove all installed languages for the product, which is
+  what an uninstall should do. Naming en-us here would leave a da-dk install
+  half removed.
+-->
+<Configuration ID="M365-Base-Uninstall">
+
+  <Remove All="FALSE">
+    <Product ID="O365ProPlusRetail" />
+  </Remove>
+
+  <Display Level="None" AcceptEULA="TRUE" />
+
+  <Property Name="FORCEAPPSHUTDOWN" Value="TRUE" />
+
+</Configuration>

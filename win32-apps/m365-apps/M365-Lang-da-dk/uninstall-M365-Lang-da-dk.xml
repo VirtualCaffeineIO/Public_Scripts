@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  M365-Lang-da-dk : uninstall-M365-Lang-da-dk.xml
+
+  Removes the Danish (Denmark) language pack across all installed products,
+  leaving every product and every other language in place.
+
+  This matches the documented Remove example for language packs on Microsoft
+  Learn: Product ID="LanguagePack" with the specific Language ID to remove.
+  Both the product and the language must be named. Omitting the Language
+  element would make the ODT discover and remove every installed language,
+  which from a Company Portal uninstall button would strip the device's Office
+  back to nothing usable.
+
+  Do not set All="TRUE" here under any circumstances. It removes every
+  Microsoft 365 Apps product and language on the device, including Visio and
+  Project.
+
+  The culture code below must stay in step with install-M365-Lang-da-dk.xml and
+  Detect-M365LangDaDk.ps1. All three files use da-dk.
+-->
+<Configuration ID="M365-Lang-da-dk-Uninstall">
+
+  <Remove All="FALSE">
+    <Product ID="LanguagePack">
+      <Language ID="da-dk" />
+    </Product>
+  </Remove>
+
+  <Display Level="None" AcceptEULA="TRUE" />
+
+  <Property Name="FORCEAPPSHUTDOWN" Value="FALSE" />
+
+</Configuration>

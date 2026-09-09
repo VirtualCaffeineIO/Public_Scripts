@@ -1,0 +1,34 @@
+name: Intune Tenant Bootstrap
+
+on:
+  push:
+    paths:
+      - 'graph-automation/intune-tenant-bootstrap/**'
+      - '.github/workflows/intune-tenant-bootstrap.yml'
+  pull_request:
+    paths:
+      - 'graph-automation/intune-tenant-bootstrap/**'
+      - '.github/workflows/intune-tenant-bootstrap.yml'
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: pwsh
+        working-directory: graph-automation/intune-tenant-bootstrap
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install PSScriptAnalyzer
+        run: Install-Module PSScriptAnalyzer -Scope CurrentUser -Force -AllowClobber
+
+      - name: Offline contract test
+        run: ./tests/Test-Package.ps1
+
+      - name: Offline end-to-end run
+        run: ./tests/Test-OfflineRun.ps1
+
+      - name: PSScriptAnalyzer
+        run: ./tests/Invoke-Lint.ps1

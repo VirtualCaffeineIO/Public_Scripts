@@ -1,9 +1,0 @@
-<Configuration ID="project-addon-install">
-  <Add OfficeClientEdition="64" Channel="MonthlyEnterprise">
-    <Product ID="ProjectProRetail">
-      <Language ID="MatchInstalled" />
-    </Product>
-  </Add>
-  <Display Level="None" AcceptEULA="TRUE" />
-  <Property Name="FORCEAPPSHUTDOWN" Value="TRUE" />
-</Configuration>

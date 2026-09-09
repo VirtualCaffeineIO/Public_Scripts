@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  M365-Base-Business : install-M365-Base-Business.xml
+
+  Microsoft 365 Apps for business. Required install on devices licensed through
+  a Microsoft 365 business plan.
+
+  Worked example estate (substitute your own values):
+    Update channel  : Monthly Enterprise Channel
+    Architecture    : 64-bit
+    Base language   : en-us
+    Extra language  : da-dk, requested separately through M365-Lang-da-dk
+
+  WHY THIS PACKAGE EXISTS AT ALL
+
+  Microsoft 365 Apps for business is a different product ID from Microsoft 365
+  Apps for enterprise. Microsoft Learn maps Microsoft 365 Business Standard and
+  Microsoft 365 Business Premium to O365BusinessRetail, and states plainly that
+  using the wrong product ID means Office cannot activate.
+
+  Deploying the enterprise product ID against a business licence does not fail
+  loudly. The install completes, licensing then reconciles the device against
+  the entitlement it actually holds, and the product recorded on the device
+  stops matching the product ID the detection script was written to look for.
+  Detection flips to not installed, Intune reinstalls, and the loop closes.
+  Two product IDs need two packages, two detection scripts and two assignment
+  groups. See MIGRATION.md, defect 7.
+
+  Product ID note. If the tenant holds Microsoft 365 Business Standard (no
+  Teams) or Microsoft 365 Business Premium (no Teams), Learn maps those to
+  O365BusinessEEANoTeamsRetail instead. Check the plan table before deploying.
+-->
+<Configuration ID="M365-Base-Business">
+
+  <Add OfficeClientEdition="64"
+       Channel="MonthlyEnterprise"
+       AllowCdnFallback="TRUE">
+
+    <Product ID="O365BusinessRetail">
+      <Language ID="en-us" />
+
+      <!-- Skype for Business. Excluded, same reasoning as the enterprise base. -->
+      <ExcludeApp ID="Lync" />
+
+      <!--
+        New Outlook for Windows. Excluded, deliberately, same reasoning as the
+        enterprise base. OutlookForWindows is the new Outlook app and is a
+        different ID from Outlook, which is classic Outlook. Classic Outlook
+        stays installed. Delete this line if the estate has already migrated.
+      -->
+      <ExcludeApp ID="OutlookForWindows" />
+
+      <!--
+        Groove and OneDrive are deliberately NOT excluded. The two IDs are
+        documented inconsistently and excluding the wrong one removes the
+        OneDrive sync client and Known Folder Move with it. See MIGRATION.md,
+        defect 5.
+      -->
+
+      <!--
+        Teams is deliberately NOT excluded. Teams is included with new
+        installations of Microsoft 365 Apps for business where a Teams service
+        plan is present. The new Teams client is not in the offline package, so
+        the device needs internet access at install time. This package installs
+        from the CDN, so that is satisfied.
+      -->
+
+    </Product>
+  </Add>
+
+  <!--
+    Same OEM and consumer Click-to-Run removal list as the enterprise base.
+    Every ID is drawn from the supported product ID list on Microsoft Learn.
+    The detection script does not read this list.
+  -->
+  <Remove>
+    <Product ID="O365HomePremRetail" />
+    <Product ID="HomeStudent2021Retail" />
+    <Product ID="Home2024Retail" />
+    <Product ID="HomeBusiness2021Retail" />
+    <Product ID="HomeBusiness2024Retail" />
+    <Product ID="Personal2021Retail" />
+    <Product ID="OneNoteFreeRetail" />
+  </Remove>
+
+  <RemoveMSI />
+
+  <Updates Enabled="TRUE" />
+
+  <Display Level="None" AcceptEULA="TRUE" />
+
+  <Property Name="FORCEAPPSHUTDOWN" Value="FALSE" />
+  <Property Name="PinIconsToTaskbar" Value="FALSE" />
+
+</Configuration>
